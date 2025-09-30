@@ -11,7 +11,7 @@ export class UserService {
     private readonly users: Repository<User>,
   ) {}
 
-  async create(dto: CreateUserDto): Promise<User> {
+  async createUser(dto: CreateUserDto): Promise<User> {
     const entity = this.users.create(dto as DeepPartial<User>);
     return this.users.save(entity);
   }
