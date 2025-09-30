@@ -1,0 +1,13 @@
+# dependências e artefatos
+node_modules
+dist
+
+# VCS e CI
+.git
+.github
+.aws
+
+# caches e editor
+.npm
+.vscode
+.DS_Store
