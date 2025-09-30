@@ -36,6 +36,13 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Verify AWS identity and ECR repo
+      run: |
+        echo "Region: $AWS_REGION"
+        aws sts get-caller-identity
+        aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" --region "$AWS_REGION" \
+        || aws ecr create-repository --repository-name "$ECR_REPOSITORY" --region "$AWS_REGION"
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
